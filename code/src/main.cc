@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	resultado = step * sum;
 	*/
 	
-	std::cout << "pi=" << piValue << std::endl;
+	//std::cout << "pi=" << piValue << std::endl;
 	return(EXIT_SUCCESS);
 }
 
