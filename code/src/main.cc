@@ -30,10 +30,6 @@ int main(int argc, char *argv[])
 	float* resultado;
 
 	mpi::scatter(world,resultado,2,0);
-	std::cout << "num_steps-" << num_steps << "\t";
-	std::cout << "rankID-" << rankID << "\t";
-	std::cout << "resultado-" << resultado << "\t";
-	std::cout << "ntotalByProc-" << ntotalByProc << std::endl;
 	/*
 	for (size_t i = 1; i <= ntotalByProc; i++){
 		double x;
