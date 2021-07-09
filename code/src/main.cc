@@ -51,11 +51,12 @@ int main(int argc, char *argv[])
 
 
 	mpi::scatter(world,numbersToShare,numbersToSum,ntotalByProc,0);
+	
 	float sumaParcial = 0.0;
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
 		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
 	}
-	std::cout << sumaParcial << std::endl;
+	std::cout << ntotalByProc << std::endl;
 	/*
 	for (size_t i = 1; i <= ntotalByProc; i++){
 		double x;
