@@ -17,7 +17,8 @@ void createNumbers(const int& count, double* out, double step)
 
 	for (size_t i = 1; i <= count; i++){
 		double x;
-		out[i] = (i-0.5)*step;
+		x = (i-0.5)*step;
+		out[i]=x
 		
 	}
 }
@@ -56,18 +57,15 @@ int main(int argc, char *argv[])
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
 		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
 	}
-	std::cout << sumaParcial << std::endl;
-	/*
-	for (size_t i = 1; i <= ntotalByProc; i++){
-		double x;
-		
-		x = (i-0.5)*step;
-		sum = sum + 4.0/(1.0+x*x);
-	}
-	resultado = step * sum;
-	*/
-	
-	//std::cout << "pi=" << piValue << std::endl;
+	std::vector<std::double> recvData;
+	mpi::gather(world,sumaParcial,recvData,0);
+	if(world.rank() == 0):
+		for (const auto& item : recvData){
+			piValue+= item;
+		}
+		piValue=piValue*step;
+		std::cout << piValue << std::endl;
+
 	return(EXIT_SUCCESS);
 }
 
