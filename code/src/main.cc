@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	uint32_t inicio, fin;
 	inicio = 1;
 	fin    = num_steps;
-	float resultado=0;
+	float* resultado;
 
 	mpi::scatter(world,resultado,num_steps,0);
 	std::cout << "num_steps-" << num_steps << "\t";
