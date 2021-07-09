@@ -9,7 +9,7 @@
 
 namespace mpi = boost::mpi;
 
-void createNumbers(const int& count, float* out, double step)
+void createNumbers(const int& count, double* out, double step)
 {
 	std::random_device rd;  //seed for the random number engine
 	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
@@ -18,7 +18,6 @@ void createNumbers(const int& count, float* out, double step)
 	for (size_t i = 1; i <= count; i++){
 		double x;
 		out[i] = (i-0.5)*step;
-		std::cout << (i-0.5)*step << std::endl;
 		
 	}
 }
@@ -43,17 +42,17 @@ int main(int argc, char *argv[])
 
 
 
-	float* numbersToShare;
-	numbersToShare = new float[num_steps];
+	double* numbersToShare;
+	numbersToShare = new double[num_steps];
 	createNumbers(num_steps, numbersToShare,step);
 	int ntotalByProc = num_steps/procInComm;
-	float* numbersToSum;
-	numbersToSum = new float[ntotalByProc];
+	double* numbersToSum;
+	numbersToSum = new double[ntotalByProc];
 
 
 	mpi::scatter(world,numbersToShare,numbersToSum,ntotalByProc,0);
 
-	float sumaParcial = 0.0;
+	double sumaParcial = 0.0;
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
 		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
 	}
