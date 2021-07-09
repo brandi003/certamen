@@ -23,10 +23,11 @@ int main(int argc, char *argv[])
 	
 	double piValue, sum = 0.0;
 	step = 1.0/(double)num_steps;
-
+	int ntotalByProc = num_steps/procInComm;
 	uint32_t inicio, fin;
 	inicio = 1;
 	fin    = num_steps;
+	mpi::scatter(world,num_steps,resultado,ntotalByProc,0);
 	for (size_t i = 1; i <= fin; i++){
 		double x;
 		
