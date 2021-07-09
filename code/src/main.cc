@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	fin    = num_steps;
 	float* resultado;
 
-	mpi::scatter(world,resultado,10,0);
+	mpi::scatter(world,resultado,2,0);
 	std::cout << "num_steps-" << num_steps << "\t";
 	std::cout << "rankID-" << rankID << "\t";
 	std::cout << "resultado-" << resultado << "\t";
