@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	mpi::communicator world;
 	
 	int rankID     = world.rank();
-	int procInComm = 5;
+	int procInComm = world.size();
 	
 	double step;
 	uint32_t num_steps = 100000;
