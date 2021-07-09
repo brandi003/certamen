@@ -27,14 +27,22 @@ int main(int argc, char *argv[])
 	uint32_t inicio, fin;
 	inicio = 1;
 	fin    = num_steps;
+	resultado=0;
+
 	mpi::scatter(world,num_steps,resultado,ntotalByProc,0);
-	for (size_t i = 1; i <= fin; i++){
+	std::cout << "num_steps-" << num_steps << "\t";
+	std::cout << "rankID-" << rankID << "\t";
+	std::cout << "resultado-" << resultado << "\t";
+	std::cout << "ntotalByProc-" << ntotalByProc << std::endl;
+	/*
+	for (size_t i = 1; i <= ntotalByProc; i++){
 		double x;
 		
 		x = (i-0.5)*step;
 		sum = sum + 4.0/(1.0+x*x);
 	}
-	piValue = step * sum;
+	resultado = step * sum;
+	*/
 	
 	std::cout << "pi=" << piValue << std::endl;
 	return(EXIT_SUCCESS);
