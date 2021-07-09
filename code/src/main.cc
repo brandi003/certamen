@@ -9,6 +9,19 @@
 
 namespace mpi = boost::mpi;
 
+void createNumbers(const int& count, float* out)
+{
+	std::random_device rd;  //seed for the random number engine
+	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+	std::uniform_real_distribution<> distrib(0, 10000);
+
+	for (size_t i = 1; i <= count; i++){
+		double x;
+		out[i] = (i-0.5)*step;
+		
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	mpi::environment env{argc, argv};
@@ -23,13 +36,21 @@ int main(int argc, char *argv[])
 	
 	double piValue, sum = 0.0;
 	step = 1.0/(double)num_steps;
-	int ntotalByProc = num_steps/procInComm;
 	uint32_t inicio, fin;
 	inicio = 1;
 	fin    = num_steps;
-	float* resultado;
 
-	mpi::scatter(world,resultado,0);
+
+
+	float* numbersToShare;
+	numbersToShare = new float[num_steps];
+	createNumbers(num_steps, numbersToShare);
+	int ntotalByProc = num_steps/procInComm;
+	float* numbersToSum;
+	numbersToSum = new float[ntotalByProc];
+
+
+	mpi::scatter(world,numbersToShare,numbersToSum,ntotalByProc,0);
 	/*
 	for (size_t i = 1; i <= ntotalByProc; i++){
 		double x;
