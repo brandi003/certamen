@@ -18,7 +18,7 @@ void createNumbers(const int& count, double* out, double step)
 	for (size_t i = 1; i <= count; i++){
 		double x;
 		x = (i-0.5)*step;
-		out[i]=x
+		out[i]=x;
 		
 	}
 }
