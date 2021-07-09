@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
 		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
 	}
-	std::vector<std::double> recvData;
+	std::vector<double> recvData;
 	mpi::gather(world,sumaParcial,recvData,0);
 	if(world.rank() == 0){
 		for (const auto& item : recvData){
