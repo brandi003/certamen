@@ -18,6 +18,7 @@ void createNumbers(const int& count, float* out, double step)
 	for (size_t i = 1; i <= count; i++){
 		double x;
 		out[i] = (i-0.5)*step;
+		std::cout << (i-0.5)*step << std::enl;
 		
 	}
 }
