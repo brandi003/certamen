@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	mpi::scatter(world,numbersToShare,numbersToSum,ntotalByProc,0);
 	float sumaParcial = 0.0;
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
-		sumaParcial += 4.0/(1.0+x*x);
+		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
 	}
 	/*
 	for (size_t i = 1; i <= ntotalByProc; i++){
