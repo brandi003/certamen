@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	fin    = num_steps;
 	float* resultado;
 
-	mpi::scatter(world,resultado,2,0);
+	mpi::scatter(world,resultado,0);
 	/*
 	for (size_t i = 1; i <= ntotalByProc; i++){
 		double x;
