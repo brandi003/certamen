@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Vericar que la cantidad de argumentes sea la correcta
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
 	echo "Uso $0 <P>"
 	exit
 fi
