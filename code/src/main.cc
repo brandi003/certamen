@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	mpi::communicator world;
 	
 	int rankID     = world.rank();
-	int procInComm = world.size();
+	int procInComm = 5;
 	
 	double step;
 	uint32_t num_steps = 100000;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 
 
 	mpi::scatter(world,numbersToShare,numbersToSum,ntotalByProc,0);
-	
+
 	float sumaParcial = 0.0;
 	for(size_t idx = 0; idx < ntotalByProc; idx++){
 		sumaParcial += 4.0/(1.0+numbersToSum[idx]*numbersToSum[idx]);
