@@ -9,7 +9,7 @@
 
 namespace mpi = boost::mpi;
 
-void createNumbers(const int& count, float* out)
+void createNumbers(const int& count, float* out, double step)
 {
 	std::random_device rd;  //seed for the random number engine
 	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
 	float* numbersToShare;
 	numbersToShare = new float[num_steps];
-	createNumbers(num_steps, numbersToShare);
+	createNumbers(num_steps, numbersToShare,step);
 	int ntotalByProc = num_steps/procInComm;
 	float* numbersToSum;
 	numbersToSum = new float[ntotalByProc];
