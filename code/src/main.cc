@@ -59,13 +59,13 @@ int main(int argc, char *argv[])
 	}
 	std::vector<std::double> recvData;
 	mpi::gather(world,sumaParcial,recvData,0);
-	if(world.rank() == 0):
+	if(world.rank() == 0){
 		for (const auto& item : recvData){
 			piValue+= item;
 		}
 		piValue=piValue*step;
 		std::cout << piValue << std::endl;
-
+	}
 	return(EXIT_SUCCESS);
 }
 
